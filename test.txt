@@ -1,0 +1,16 @@
+2018_10_30-00_10_49  INFO: Run version number: 00001
+2018_10_30-00_10_50  INFO: Case module: test module
+2018_10_30-00_10_51  INFO: start run case: test test
+2018_10_30-00_10_52  INFO: Test Result:Pass
+2018_10_30-00_10_53  INFO: this case spend : 66.666666 s
+2018_10_30-00_10_53  INFO: Sleep: 10 s
+2018_10_30-00_10_54  INFO: Case module: test module2
+2018_10_30-00_10_55  INFO: start run case: test test1
+2018_10_30-00_10_56  INFO: Test Result:Pass
+2018_10_30-00_10_57  INFO: this case spend : 66.666666 s
+2018_10_30-00_10_58  INFO: Case module: test module
+2018_10_30-00_10_59  INFO: start run case: test test2
+2018_10_30-00_10_60  INFO: Test Result:Pass
+2018_10_30-00_10_61  INFO: this case spend : 66.666666 s
+2018_10_30-00_10_62  INFO: Test Execution Finished
+

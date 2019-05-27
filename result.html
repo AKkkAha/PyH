@@ -1,0 +1,389 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+2019-05-23 14:59测试
+</title>
+<script  type="text/javascript">function log() {
+    var btn = document.getElementById('btn');
+    var obj = document.getElementById('myarticle');
+    var total_height =  obj.scrollHeight;
+    var show_height = 300;
+    if(total_height>show_height){
+    btn.style.display = 'block';
+    }
+    btn.onclick = function(){
+        obj.style.height = total_height + 'px';
+        btn.style.display = "none";
+    }
+}
+
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByClassName("testclass");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        if(0==level && tr.className.indexOf("active") != -1){
+            tr.className = tr.className.replace("active", "").replace("  ", " ").trim();
+        }else if (2 == level && tr.className.indexOf("active") == -1){
+            tr.className+=" active";
+        }else if (1 == level){
+            if(tr.className.indexOf("passClass") != -1){
+                if(tr.className.indexOf("active") != -1){
+                    tr.className = tr.className.replace("active", "").replace("  ", " ").trim();
+                }
+            }else if (tr.className.indexOf("active") == -1){
+                tr.className+=" active";
+            }
+        }
+    }
+}
+
+function showClassDetail(element) {
+    var currentClassValue = element.className || "";
+
+    if (currentClassValue.indexOf("active") == -1) {
+        currentClassValue += " active";
+    } else {
+        currentClassValue = currentClassValue.replace("active", "").replace("  ", " ");
+    }
+    element.className = currentClassValue.trim();
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+    
+}
+
+function togleClass(element, clas){
+        var currentClassValue = element.className || "";
+
+        if (currentClassValue.indexOf(clas) == -1) {
+            currentClassValue += " "+clas;
+        } else {
+            currentClassValue = currentClassValue.replace(clas, "").replace("  ", " ");
+        }
+        element.className = currentClassValue.trim()
+    }
+
+function showRawLog(element){
+        togleClass(element, "popup_window")
+    }
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+</script>
+<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="text/javascript">
+
+</script>
+<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript">
+
+</script>
+<style type="text/css" media="screen">    body        { font-family: verdana, arial, helvetica, sans-serif; width: 80%;margin: auto;}
+    table       { font-size: 100%; }
+    pre         { }
+    
+    
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 4ex;
+        margin-bottom: 6ex;
+    }
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 8px;
+        background-color: #E6E6D6;
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        width: 570px;
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    .result_table {
+        width: 80%;
+        border-collapse: collapse;
+        border: 1px solid #777;
+    }
+    #header_row {
+        font-weight: bold;
+        color: white;
+        background-color: #777;
+    }
+    .result_table td {
+        border: 1px solid #777;
+        padding: 2px;
+    }
+    .shortDescription {
+        font-style: italic;
+        font-weight: normal;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #6c6; }
+    .failClass  { background-color: #c60; }
+    .errorClass { background-color: #c00; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #c60; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+
+    .testcase   { display: none; }
+    .testclass.active ~ .testcase { display: table-row; }
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }</style>
+
+</head>
+<body>
+<h1 align="center">
+2019-05-23 14:59测试
+</h1>
+<div class="panel panel-default">
+<div class="panel - heading">
+<h2 align="left">
+测试概况
+</h2>
+
+</div>
+<div class="panel-body">
+<p>
+版本:  00001 
+</p>
+<p>
+总共执行用例: 3  | 通过:3  | 失败（测试预期结果不对）: 0
+</p>
+<p>
+用例通过率：100.00%
+</p>
+<p>
+开始测试时间：2018_10_30-00_10_50  
+</p>
+<p>
+耗时：12 秒
+</p>
+
+</div>
+
+</div>
+<table body="{'width': '80%', 'margin': 'auto'}" class="table">
+<tr id="header_row">
+<td width="5%" align="right">
+用例组ID
+</td>
+<td width="35%" align="left">
+测试用例组名称
+</td>
+<td width="10%" align="left">
+测试总数
+</td>
+<td width="10%" align="left">
+成功
+</td>
+<td width="10%" align="left">
+失败
+</td>
+<td width="10%" align="left">
+执行记录
+</td>
+
+
+</tr>
+
+</table>
+<table body="{'width': '80%', 'margin': 'auto'}" class="table table-bordered">
+<tr class="testclass passClass">
+<td width="5%" align="right">
+1
+</td>
+<td width="35%" align="left">
+test module2
+</td>
+<td width="10%" align="left">
+1
+</td>
+<td width="10%" align="left">
+1
+</td>
+<td width="10%" align="left">
+0
+</td>
+<td width="10%" align="left">
+<a href="javascript:void(0)" onclick="showClassDetail(this.parentNode.parentNode)">
+查看详情
+</a>
+
+</td>
+
+
+</tr>
+<tr id="caseRun. test test1-2" class="testcase">
+<td class="passCase">
+ test test1-2
+</td>
+<td>
+66667.0毫秒
+</td>
+<td>
+<a onfocus="this.blur();" href="javascript:showTestDetail('div_caseRun. test test1-2')" class="popup_link">
+PASS
+</a>
+<div style="display: none;" id="div_caseRun. test test1-2" class="popup_window">
+<div style="text-align: right; color:red; cursor:pointer;">
+<a onfocus="this.blur();" onclick="document.getElementById('div_caseRun. test test1-2').style.display = 'none'">
+[x]
+</a>
+
+</div>
+<p>
+2018_10_30-00_10_53  INFO: Sleep: 10 s<p>2018_10_30-00_10_54  INFO: Case module: test module2<p>2018_10_30-00_10_55  INFO: start run case: test test1<p>2018_10_30-00_10_56  INFO: Test Result:Pass<p>2018_10_30-00_10_57  INFO: this case spend : 66.666666 s<p>
+</p>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+</table>
+<table body="{'width': '80%', 'margin': 'auto'}" class="table table-bordered">
+<tr class="testclass passClass">
+<td width="5%" align="right">
+2
+</td>
+<td width="35%" align="left">
+test module
+</td>
+<td width="10%" align="left">
+2
+</td>
+<td width="10%" align="left">
+2
+</td>
+<td width="10%" align="left">
+0
+</td>
+<td width="10%" align="left">
+<a href="javascript:void(0)" onclick="showClassDetail(this.parentNode.parentNode)">
+查看详情
+</a>
+
+</td>
+
+
+</tr>
+<tr id="caseRun. test test-1" class="testcase">
+<td class="passCase">
+ test test-1
+</td>
+<td>
+66667.0毫秒
+</td>
+<td>
+<a onfocus="this.blur();" href="javascript:showTestDetail('div_caseRun. test test-1')" class="popup_link">
+PASS
+</a>
+<div style="display: none;" id="div_caseRun. test test-1" class="popup_window">
+<div style="text-align: right; color:red; cursor:pointer;">
+<a onfocus="this.blur();" onclick="document.getElementById('div_caseRun. test test-1').style.display = 'none'">
+[x]
+</a>
+
+</div>
+<p>
+2018_10_30-00_10_50  INFO: Case module: test module<p>2018_10_30-00_10_51  INFO: start run case: test test<p>2018_10_30-00_10_52  INFO: Test Result:Pass<p>2018_10_30-00_10_53  INFO: this case spend : 66.666666 s<p>
+</p>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+<tr id="caseRun. test test2-3" class="testcase">
+<td class="passCase">
+ test test2-3
+</td>
+<td>
+66667.0毫秒
+</td>
+<td>
+<a onfocus="this.blur();" href="javascript:showTestDetail('div_caseRun. test test2-3')" class="popup_link">
+PASS
+</a>
+<div style="display: none;" id="div_caseRun. test test2-3" class="popup_window">
+<div style="text-align: right; color:red; cursor:pointer;">
+<a onfocus="this.blur();" onclick="document.getElementById('div_caseRun. test test2-3').style.display = 'none'">
+[x]
+</a>
+
+</div>
+<p>
+2018_10_30-00_10_58  INFO: Case module: test module<p>2018_10_30-00_10_59  INFO: start run case: test test2<p>2018_10_30-00_10_60  INFO: Test Result:Pass<p>2018_10_30-00_10_61  INFO: this case spend : 66.666666 s<p>
+</p>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+</table>
+
+</body>
+
+</html>
